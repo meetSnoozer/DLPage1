@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0f1f;
+    color: #e6e9ff;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    background: #0d1328;
+    padding: 15px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(138,92,255,0.3);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #8a5cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cfd6ff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8a5cff;
+}
+
+.signin-btn {
+    padding: 8px 18px;
+    background: #6f42ff;
+    border-radius: 6px;
+    font-weight: 600;
+    color: white !important;
+}
+
+.signin-btn:hover {
+    background: #8a5cff;
+    box-shadow: 0 0 12px #6f42ff;
+}
+
+/* HERO */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: 
+        linear-gradient(rgba(23, 29, 48, 0.85), rgba(29, 35, 54, 0.95)),
+        url('gamesample1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    color: #8a5cff;
+    text-shadow: 0 0 20px #6f42ff;
+}
+
+header p {
+    margin-top: 20px;
+    max-width: 650px;
+    color: #b5beff;
+}
+
+/* SECTIONS */
+section {
+    padding: 100px 10%;
+    
+}
+.getButton{
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 50px;
+    color: #8a5cff;
+}
+
+/* CONTENT BOX */
+.content-box {
+    background: #121a33;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(111,66,255,0.25);
+}
+
+/* SYSTEM REQUIREMENTS */
+.requirements-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.requirement-card {
+    background: #121a33;
+    padding: 30px;
+    border-radius: 12px;
+    width: 320px;
+    transition: 0.4s ease;
+    box-shadow: 0 0 15px rgba(111,66,255,0.2);
+    border: 1px solid rgba(138,92,255,0.2);
+}
+
+.requirement-card h3 {
+    color: #8a5cff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.requirement-card ul {
+    list-style: none;
+    line-height: 1.8;
+}
+
+.requirement-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 30px rgba(138,92,255,0.6);
+    border: 1px solid #8a5cff;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #080c18;
+    color: #777;
+}
+/* HERO CONTAINER */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background layers */
+.bg-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 0;
+}
+
+/* Initial visibility */
+.bg1 { opacity: 1; }
+.bg2 { opacity: 0; }
+
+/* Dark overlay */
+
+
+/* Content above background */
+/* Overlay layer above both backgrounds */
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(23,29,48,0.85), rgba(29,35,54,0.95));
+    z-index: 1; /* sits above bg1 & bg2 */
+}
+
+/* Hero content above everything */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.spacer{
+    height: 20px;
+}

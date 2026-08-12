@@ -12,5 +12,7 @@ console.log(getCode());
     localStorage.setItem("password",password.value);
     localStorage.setItem("email",email.value);
     localStorage.setItem("code",getCode());
-    window.location.href = "signup-code.html";
+    window.location.href = "code.html";
+    
+    return false;
   }

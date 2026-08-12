@@ -3,159 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>DataScape | Admin Dashboard</title>
 
-       <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
-    <link rel="stylesheet" href="user-page.css" />
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-neon: #00ff88;
+            --secondary-neon: #ff00ff;
+            --accent-purple: #8a5cff;
+            --bg-dark: #0a0a15;
+            --bg-secondary: #0f0f23;
+            --text-light: #e0e6ff;
+            --text-muted: #a0a8c0;
+            --glass-bg: rgba(20, 20, 40, 0.7);
+            --glow-neon: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCtDBFbZ9QBhqchyaPVAce145IMPzekYWA",
-    authDomain: "dlpage-e807c.firebaseapp.com",
-    projectId: "dlpage-e807c",
-    storageBucket: "dlpage-e807c.firebasestorage.app",
-    messagingSenderId: "216742989828",
-    appId: "1:216742989828:web:c8193623b5ecc8a1862551"
-  };
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
+        #particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        }
+
+        /* --- Custom Admin Styling --- */
+        .admin-nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-neon);
+            box-shadow: var(--glow-neon);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-neon);
+            margin: 0;
+        }
+
+        .report-container {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(138, 92, 255, 0.2);
+        }
+
+        .table-neon {
+            color: var(--text-light);
+        }
+
+        .table-neon thead {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary-neon);
+            border-bottom: 2px solid var(--secondary-neon);
+        }
+
+        .table-neon td {
+            background: transparent !important;
+            color: var(--text-light) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+        }
+
+        .neon-select {
+            background: var(--bg-secondary);
+            color: var(--primary-neon);
+            border: 1px solid var(--primary-neon);
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-neon {
+            background: transparent;
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            font-family: 'Orbitron', sans-serif;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .btn-neon:hover {
+            background: var(--primary-neon);
+            color: #000;
+            box-shadow: var(--glow-neon);
+        }
+
+        .side-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .side-link:hover, .side-link.active {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary-neon);
+            padding-left: 20px;
+        }
+        .adminBoard{
+            display: none;
+        }
+        .adminBoard.active{
+            display: block;
+        }
+        .neon-input:focus {
+    background: rgba(0, 255, 136, 0.05) !important;
+    border-color: var(--primary-neon) !important;
+    color: var(--text-light) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.096);
+}
+
+/* Fix for select options appearance */
+.neon-input option {
+    background: var(--bg-secondary);
+    color: var(--text-light);
+}
+
+.chart-container { width: 80%; margin: auto; background: #1a1a1a10; padding: 20px; border-radius: 8px; }
+#sales-rundown th{
+    color: #8a5cff;
+}
+#sales-title th{
+    color: #39FF14;
+}
+#sales-table{
+    background-color: transparent;
+}
+.report-container {
+    background: transparent !important;
+    border: 1px solid rgba(0, 255, 136, 0.1); /* Optional: Keep a faint neon border */
+    box-shadow: none; /* Removes the heavy glow if you want it flat */
+}
+
+/* 2. Ensure the table and its cells have no background */
+#sales-table, 
+#sales-table td, 
+#sales-table th {
+    background-color: transparent !important;
+    background: none !important;
+    border-bottom: none;
+}
+
+/* 3. Optional: Add a slight tint to rows on hover so they are readable 
+      against the particle background */
+#sales-rundown tr:hover {
+    background: rgba(0, 255, 136, 0.05) !important;
+    transition: 0.3s;
+}
+
+#player-table, 
+#player-table td, 
+#player-table th {
+    background-color: transparent !important;
+    background: none !important;
+    border-bottom: none;
+}
+
+/* 3. Optional: Add a slight tint to rows on hover so they are readable 
+      against the particle background */
+#player-rundown tr:hover {
+    background: rgba(0, 255, 136, 0.05) !important;
+    transition: 0.3s;
+}
+#player-rundown th{
+    color: #8a5cff;
+}
+#player-title th{
+    color: #39FF14;
+}
+    </style>
 </head>
-<body >
-    
-    <nav class="navbar shadow" id="navbar">
-        <div class="container px-4">
-            <a href="index.html" style="color: white; text-decoration: none; padding: 1%;"><h3 id="logo">oddLoopGames</h3></a>
-            <div class="top-container">
-<button id = "shabu" type="button" class="navbar-toggler border-0 text-white" data-bs-toggle="offcanvas" aria-controls="top-navbar1" data-bs-target="#top-navbar1" onclick="togel">
-                <i class="lni lni-layers-1"></i>
-             </button>
-             <div class="offcanvas offcanvas-end" tabindex="-1" id="top-navbar1" aria-labelledby="top-navbar1Label" >
-                <button type="button" class="navbar-toggler border-0 text-white off-head" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar" >
-                    <div class="d-flex justify-content-between p-3 " style="color: white; width: 100%;">
-                        <h3>Player Name</h3>
-                        <i class="lni lni-layers-1"></i>
-                    </div>
-]                    
-             </button>
-             <ul class="page-opt">
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="" href="#">Account Settings</a>
-                </li>
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="" href="pages/dlPage.html">Display Settings</a>
-                </li>
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="" href="#">Log Out</a>
-                </li>
+<body>
 
-             </ul>
-             </ul>
-             </div>
+<canvas id="particles"></canvas>
 
-            </div>
-             
-        </div>
-        
-    </nav>
-    
-     
-     <h1 class="PageLabel">Sales Report</h1>
-<div class="row" style="padding-bottom: 5%;">
-    <div class="side-nav">
-        <div class="side-header">
-            <h3>View Page</h3>
-        </div>
-        <div>
-            <ul class="side-list">
-                <li>
-                    <a href="#">
-                        Personal Stats
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Leaderboards
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Goals
-                    </a>
-                </li>
-
-            </ul>
-        </div>
+<nav class="admin-nav d-flex justify-content-between align-items-center shadow-lg">
+    <a href="index.html" class="logo h3">DataScape</a>
+    <div class="user-info">
+        <span class="me-3 text-muted">Admin: <b class="text-light">Operator_01</b></span>
+        <a href="#" class="btn-neon btn-sm">Log Out</a>
     </div>
-    <div class="mid-display">
-       <div class="top-description-container">
-        <div class="top-description" >
-            <p id="saleCount">
+</nav>
 
-            </p>
+<div class="container-fluid py-5 px-4">
+    <div class="row">
+        <div class="col-lg-2">
+            <h5 class="font-orbitron mb-4 text-secondary-neon" style="font-family: 'Orbitron';">Navigation</h5>
+            <a href="#" class="side-link active" onclick="changePage(0)"><i class="fas fa-chart-pie me-2"></i> Sales Report</a>
+            <a href="#" class="side-link playerWatch"onclick="changePage(1)"><i class="fas fa-users me-2"></i> Player Watch</a>
+            <a href="#" class="side-link"onclick="changePage(2)"><i class="fas fa-chart-line me-2"></i> Sales Summary</a>
+            <a href="#" class="side-link"onclick="changePage(3)"><i class="fas fa-chart-bar me-2"></i> Annual Sales</a>
         </div>
-        <div class="top-description">
-            <p id="saleTotal">
-
-            </p>
-        </div>
-        <div class="top-description">
-            <p id="totalAccounts">
-
-            </p>
-        </div>
-       </div>
-        
-        <h1>
-            January
-        </h1>
-        <div class="sales-rundown" id="sales-rundown">
-            <div class="top-inner-container" >
-                <div class="top-inner-label">
-                    <p>
-                        <b>Date</b>
-                    </p>
+        <!-- Sales Board -->
+        <div class="col-lg-10 adminBoard active">
+            <h1 class="font-orbitron mb-4" style="font-family: 'Orbitron'; letter-spacing: 3px;">
+                Financial <span style="color: var(--primary-neon);">Telemetry</span>
+            </h1>
+            
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase" style="color:#8a5cff">Total Sales</p>
+                        <p id="saleCount" class="stat-value">--</p>
+                    </div>
                 </div>
-                <div class="top-inner-label">
-                    <p>
-                        <b>Item</b>
-                        
-                    </p>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase" style="color:#8a5cff">Revenue (Credits)</p>
+                        <p id="saleTotal" class="stat-value">--</p>
+                    </div>
                 </div>
-                <div class="top-inner-label">
-                    <p>
-                        <b>Amount</b>
-                        
-                    </p>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase" style="color:#8a5cff">Active Nodes</p>
+                        <p id="totalAccounts" class="stat-value">--</p>
+                    </div>
                 </div>
-
             </div>
-            
-            
 
+            <div class="report-container shadow">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 id="month" style="font-family: 'Orbitron'; font-size: 1.5rem; color: var(--secondary-neon);"></h2>
+                    <div class="d-flex gap-2">
+                        <select id="mSelect" class="neon-select">
+                            <option value="01">January</option>
+                            <option value="02" selected>February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06" >June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                            </select>
+                        <button id="reset" class="btn-neon" onclick="resetDisplay(1)">Sync Data</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-neon" id="sales-table">
+                        <thead id="sales-title">
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Item ID</th>
+                                <th>Credit Amount</th>
+                                <th>Buyer Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-rundown">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Sales Board end-->
+        <!-- Player Board -->
+        <div class="col-lg-10 adminBoard playerBoard">
+            <h1 class="font-orbitron mb-4" style="font-family: 'Orbitron'; letter-spacing: 3px;">
+                Player Watch <span style="color: var(--primary-neon);">Board</span>
+            </h1>
+
+            <div class="report-container shadow">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 id="month" style="font-family: 'Orbitron'; font-size: 1.5rem; color: var(--secondary-neon);">February</h2>
+                    <div class="d-flex gap-2">
+                        <select id="mSelect" class="neon-select">
+                            <option value="01">January</option>
+                            <option value="02" selected>February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            </select>
+                        <button id="reset" class="btn-neon" onclick="resetDisplay(1)">Sync Data</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-neon" id="player-table">
+                        <thead id="player-title">
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Edit Account Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="player-rundown">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Player Board end-->
+         <!-- Sales Chart -->
+        <div class="col-lg-10 adminBoard salesChart">
+            <h1 class="font-orbitron mb-4" style="font-family: 'Orbitron'; letter-spacing: 3px;">
+                Sales  <span style="color: var(--primary-neon);">Summary</span>
+            </h1>
+            <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="stat-card" style="color: #8a5cff;">
+                        <p class=" text-uppercase"style="color:#8a5cff">Total Sales This Month</p>
+                        <p id="monthTotal" class="stat-value">--</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase" style="color:#8a5cff">Total Sales Last Month</p>
+                        <p id="lastMonthTotal" class="stat-value">--</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase"style="color:#8a5cff">Monthly Growth</p>
+                        <p id="growthTxt" class="stat-value">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Player Board end-->
+        <!-- Annual Sales Report-->
+         <div class="col-lg-10 adminBoard annualReport">
+            <h1 class="font-orbitron mb-4" style="font-family: 'Orbitron'; letter-spacing: 3px;">
+                Yearly Sales  <span style="color: var(--primary-neon);">Summary</span>
+            </h1>
+            <div class="chart-container">
+                <canvas id="annualReport"></canvas>
+            </div>
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="stat-card" style="color: #8a5cff;">
+                        <p class=" text-uppercase"style="color:#8a5cff">Total Sales This Year</p>
+                        <p id="yearSale" class="stat-value">--</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase" style="color:#8a5cff">--</p>
+                        <p id="" class="stat-value">--</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <p class="text-uppercase"style="color:#8a5cff">--</p>
+                        <p id="" class="stat-value">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- End Annual Report-->
+         
+    </div>
+</div>
+<!--edit field-->
+<div class="modal fade" id="editPlayerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: var(--bg-secondary); border: 1px solid var(--primary-neon); border-radius: 20px; box-shadow: var(--glow-neon);">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title font-orbitron text-primary-neon" style="font-family: 'Orbitron';">Update <span class="text-secondary-neon">Node</span></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="editPlayerForm">
+                    
+                    <div class="mb-3">
+                        <label class=" small text-uppercase" style="color: #00ff88;padding-bottom: 10px;">Email</label>
+                        <br>
+                        <input type="text" id="editPlayerId" class="form-control neon-input" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(0, 255, 136, 0.3); color: var(--text-light);" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class=" small text-uppercase" style="color: #00ff88;padding-bottom: 10px;">Username</label>
+                        <br>
+                        <input type="text" id="editUsername" class="form-control neon-input" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(0, 255, 136, 0.3); color: var(--text-light);">
+                    </div>
+                    <div class="mb-3 position-relative" style="color: #00ff88;padding-bottom: 10px;">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" id="nodePassword" class="form-control neon-input" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(0, 255, 136, 0.3); color: var(--text-light);">
+                            <button class="btn btn-outline-neon" type="button" id="togglePassword" style="border: 1px solid var(--primary-neon); color: var(--primary-neon);">
+                                <i class="fas fa-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="small text-uppercase" style="color: #00ff88;padding-bottom: 10px;">Status</label>
+                        <br>
+                        <select id="editStatus" class="form-select neon-input" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(0, 255, 136, 0.3); color: var(--primary-neon);">
+                            <option value="active">Active</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="terminated">Terminated</option>
+                        </select>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn-neon" onclick="updateInfo()">Commit Changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<!--end field-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="admin.js" defer></script>
+<script>
+    const pageButtons = document.getElementsByClassName("side-link");
+    const pageBoards = document.getElementsByClassName("adminBoard");
+    function changePage(indexId){
+    document.querySelectorAll('.side-link').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.adminBoard').forEach(p => p.classList.remove('active'));
+    pageButtons[indexId].classList.add('active');
+    pageBoards[indexId].classList.add('active');
+  console.log(indexId);
+    if(indexId==1){
+        showPlayerBase();
+    }
+    if(indexId==2){
+        getDailySales();
+    }
+    if(indexId==3){
+        getMonthlySales();
+    }
+}
+    // Include the Particle script you had in the original DataScape page here to keep the background moving
+    // (Omitted for brevity, but copy-paste the JS from your previous HTML)
    
-    <div class="foota container-x1 flex-justify-between flex-items-center">
-        <p class="fText">©2025 oddLoopGames</p>
-    </div>
-        
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    
 </script>
-<script src="base.js"> </script>
-<!--
 
---> 
-<script src="admin.js" type="module" defer></script>
+
 </body>
 </html>

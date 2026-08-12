@@ -3,128 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>oddLoop | Create Account</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
 
-       <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
-    <link rel="stylesheet" href="login-st.css" />
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtDBFbZ9QBhqchyaPVAce145IMPzekYWA",
+            authDomain: "dlpage-e807c.firebaseapp.com",
+            projectId: "dlpage-e807c",
+            storageBucket: "dlpage-e807c.firebasestorage.app",
+            messagingSenderId: "216742989828",
+            appId: "1:216742989828:web:c8193623b5ecc8a1862551"
+        };
+        const app = initializeApp(firebaseConfig);
+    </script>
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCtDBFbZ9QBhqchyaPVAce145IMPzekYWA",
-    authDomain: "dlpage-e807c.firebaseapp.com",
-    projectId: "dlpage-e807c",
-    storageBucket: "dlpage-e807c.firebasestorage.app",
-    messagingSenderId: "216742989828",
-    appId: "1:216742989828:web:c8193623b5ecc8a1862551"
-  };
+    <style>
+        /* ================= CYBERPUNK THEME ================= */
+        :root {
+            --primary-neon: #00ff88;
+            --secondary-neon: #ff00ff;
+            --bg-dark: #0a0a15;
+            --text-light: #e0e6ff;
+            --glass-bg: rgba(20, 20, 40, 0.7);
+            --glow-neon: 0 0 20px rgba(0, 255, 136, 0.4);
+        }
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar Adaptation */
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 1rem 5%;
+        }
+
+        #logo {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        /* Registration Form */
+        .masthead {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .login-field {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .top-welcome {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary-neon);
+            text-shadow: var(--glow-neon);
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-neon);
+            background: rgba(0, 255, 136, 0.05);
+            box-shadow: var(--glow-neon);
+        }
+
+        /* Sign Up Button */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-neon), #00cc6a);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: var(--glow-neon);
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.5);
+        }
+
+        .signup {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .signup a {
+            color: var(--secondary-neon);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        #req { color: var(--secondary-neon); font-weight: bold; }
+    </style>
 </head>
-<body >
-    
-    <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow" id="navbar">
-        <div class="container px-4">
-            <a href="index.html" style="color: white; text-decoration: none; padding: 1%;"><h3 id="logo">oddLoopGames</h3></a>
-            <div class="top-container">
-<button id = "shabu" type="button" class="navbar-toggler border-0 text-white" data-bs-toggle="offcanvas" aria-controls="top-navbar1" data-bs-target="#top-navbar1" onclick="togel">
-                <i class="lni lni-layers-1"></i>
-             </button>
-             <div class="offcanvas offcanvas-end" tabindex="-1" id="top-navbar1" aria-labelledby="top-navbar1Label" >
-                <button type="button" class="navbar-toggler border-0 text-white" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar" >
-                    <div class="d-flex justify-content-between p-3 " style="background-color: rgb(32, 32, 32); color: white; width: 100%;">
-                        <h3>oddLoopGames</h3>
-                        <i class="lni lni-layers-1"></i>
-                    </div>
-                    
-             </button>
-             <ul class="navbar-nav ms-lg-auto p-4 p-lg-0 page-opt">
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="nav-link" href="#">About us</a>
-                </li>
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="nav-link" href="dlPage.html">Projects</a>
-                </li>
-                <li class="nav-item px-4 px-lg-0 py-1 py-lg-4">
-                    <a class="nav-link" href="#">Contact us</a>
-                </li>
+<body>
 
-             </ul>
-             </ul>
-             </div>
-             
-    <p class="signin-button"><a href="login.html"><strong>Sign In</strong></a></p>
+<canvas id="particles"></canvas>
 
-            </div>
-             
+<nav class="navbar shadow">
+    <div class="container px-4">
+        <a href="index.html" class="navbar-brand"><h3 id="logo">DataScape</h3></a>
+        <div class="ms-auto d-none d-lg-block">
+            <!--
+            <a href="login.html" class="text-white text-decoration-none small opacity-75">Back to Login</a>
+            -->
+            
         </div>
+    </div>
+</nav>
+
+<div class="masthead">
+    <div class="login-field">
+        <h1 class="top-welcome">Register</h1>
         
-    </nav>
-    
-     <span class="spacer">
-        <div></div>
-     </span>
-    <div class="container-fluid masthead wrapper">
-
-        <div class="color-overlay d-flex justify-content-center align-items-center">
-            <div class="login-field">
-         <h1 class="top-welcome">Register</h1>
-            <br>
-            <br>
-            <div>
-                <p>Username</p>
-                <input type="text" id="username">
-            </div>
-            <br>
-            <div>
-                <p>Password</p>
-                <input type="password" id="password">
-            </div>
-            <br>
-            <div>
-                <p id="req"></p>
-                <input type="text" id="email">
-            </div>
-            <br>
-            <br>
-
-            <button class="btn btn-success btn-lg login-btn" id="tryReg">Sign Up</button>
-            </div>
-            <p class="signup">
-                Already have an account? Why are you here then? Click <a href="login.html">here!</a>
-            </p>
-                
+        <div>
+            <label>Identification (Username)</label>
+            <input type="text" id="username" placeholder="Enter codename">
         </div>
+
+        <div>
+            <label>Security Key (Password)</label>
+            <input type="password" id="password" placeholder="Min. 8 characters">
+        </div>
+
+        <div>
+            <label id="req">Email (Required)</label>
+            <input type="email" id="email" placeholder="name@domain.com">
+        </div>
+
+        <button class="login-btn" id="tryReg">Initialize Registration</button>
         
+        <p class="signup">
+            Already verified? <a href="login.html">Login Access</a>
+        </p>
     </div>
-   
-    <div class="foota container-x1 flex-justify-between flex-items-center">
-        <p class="fText">©2025 oddLoopGames</p>
-    </div>
-        
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    
-</script>
-<script src="base.js"> 
-    
-</script>
+</div>
+
+<footer>
+    <p>©2025 oddLoopGames | V 1.0.4 | REGISTER_MODULE_ACTIVE</p>
+</footer>
+
 <script>
-var reqText = document.getElementById("req");
-    reqText.textContent="Email (required)";
-</script>
-<!-- Comment text
- <script src="app.js" type="module" defer></script>
- <script src="sign-up.js"></script>
--->
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
+    const particles = [];
+    for (let i = 0; i < 40; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2 + 1,
+            speedY: Math.random() * 0.4 + 0.1,
+            opacity: Math.random() * 0.5 + 0.1
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.fillStyle = `rgba(0, 255, 136, ${p.opacity})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+            p.y += p.speedY;
+            if (p.y > canvas.height) p.y = 0;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="base.js"></script>
 <script src="app.js" type="module" defer></script>
 </body>
 </html>

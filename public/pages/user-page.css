@@ -193,7 +193,7 @@ padding-top: 30px;
     display: grid;
 grid-template-columns: repeat(3,1fr);
 gap: 10px;
-height: 13%;
+height: 10px;
 }
 .top-inner-container p{
     padding-left: 15px;
@@ -226,6 +226,7 @@ height: 13%;
     background-color: rgb(119, 119, 119);
     border-radius: 5%;
     height: 69%;
+    min-height: 400px;
     width: 100%;
 }
 .mid-display h1{

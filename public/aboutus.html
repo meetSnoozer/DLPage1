@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataScape</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0f1f;
+    color: #e6e9ff;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 140px 12%;
+    position: relative;
+}
+
+section:nth-child(even) {
+    background: #0c1226;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+    position: fixed;
+    width: 100%;
+    background: rgba(10, 15, 31, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(138,92,255,0.2);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8a5cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cfd6ff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8a5cff;
+}
+
+/* ================= BUTTON ================= */
+.signin-btn {
+    padding: 14px 28px;
+    background: #6f42ff;
+    border-radius: 2px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: none;
+    color: white !important;
+}
+
+.signin-btn:hover {
+    background: #8a5cff;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(138,92,255,0.8);
+}
+
+/* ================= HERO ================= */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bg-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 0;
+}
+
+.bg1 { opacity: 1; }
+.bg2 { opacity: 0; }
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(23,29,48,0.85), rgba(29,35,54,0.95));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1.1;
+}
+
+.hero-content h1 span {
+    color: #8a5cff;
+    text-shadow: 0 0 30px rgba(138,92,255,0.9);
+}
+
+.hero-content p {
+    margin-top: 25px;
+    max-width: 750px;
+    font-size: 1.2rem;
+    color: #cfd6ff;
+}
+
+/* ================= SECTION TITLES ================= */
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 70px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #8a5cff;
+    margin-top: 15px;
+}
+
+/* ================= SPLIT LAYOUT ================= */
+.split {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.split-text {
+    flex: 1;
+}
+
+.split-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #b5beff;
+}
+
+
+.split-imDivider {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.split-image {
+    flex: 1;
+    height: 450px;
+    background: url('gamesample2.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+/* ================= CARDS ================= */
+.requirements-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.requirement-card {
+    background: rgba(18, 26, 51, 0.8);
+    padding: 40px;
+    border-radius: 4px;
+    width: 340px;
+    transition: 0.4s ease;
+    border: 1px solid rgba(138,92,255,0.15);
+
+}
+.requirement-card img{
+    width: 200px;
+    padding-left: 40px;
+}
+.requirement-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(138,92,255,0.4);
+    border: 1px solid #8a5cff;
+}
+
+.requirement-card h3 {
+    color: #8a5cff;
+    margin-bottom: 20px;
+}
+
+.requirement-card ul {
+    list-style: none;
+    line-height: 1.8;
+    color: #cfd6ff;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    /* text-align: center; */
+    padding: 30px;
+    background: #080c18;
+    color: #777;
+}
+
+@media(max-width: 900px) {
+    .hero-content h1 { font-size: 3rem; }
+    .split { flex-direction: column; }
+}
+
+.nav-btn {
+    /* Remove position: absolute and transform */
+    background: rgba(138, 92, 255, 0.4);
+    border: 1px solid rgba(138, 92, 255, 0.6);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-btn:hover {
+    background: #8a5cff;
+    box-shadow: 0 0 15px rgba(138, 92, 255, 0.8);
+}
+
+.prev-btn {
+     /* Adjust this to move button further in/out */
+}
+
+.next-btn {
+     /* Adjust this to move button further in/out */
+}
+.team-card img{
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 40px;
+    background-color: #6f42ff;
+    border-radius: 100px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">DataScape</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        
+        <a href="pages/login.html" class="signin-btn">Sign In</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+    <div class="bg-layer bg1"></div>
+    <div class="bg-layer bg2"></div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Meet <span>Our Team</span></h1>
+        <p></p>
+    </div>
+</header>
+
+<!-- ABOUT GAME -->
+<section id="game">
+    <div class="split">
+        <div class="split-text">
+            <h2 class="section-title">About Us</h2>
+            <p>
+                We are a team of student developers from the National College of Science and Technology (NCST) passionate about creating interactive digital experiences.
+             Together, we designed and developed a game that showcases our skills in programming, design, and teamwork.
+             This project reflects our creativity, dedication, and commitment to innovation in game development.
+            </p>
+            <br>
+            <br>
+            <a href="#team" style="padding: 25%;">
+                <button class="signin-btn">Personal Details</button>
+            </a>
+        </div>
+        <div class="split-imDivider">
+            <div><button class="nav-btn prev-btn" id="backButton">&#10094;</button></div>
+            <div class="split-image" id="splitImage"></div>
+            <div><button class="nav-btn next-btn" id="nextButton">&#10095;</button></div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+    <h2 class="section-title">Team Details</h2>
+    <div class="requirements-container">
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 1">
+            <h3>Ryan Bugay</h3>
+            <p><strong>Role:</strong> Project Lead</p>
+            <p><strong>Specialty:</strong> UI Design & Asset Management</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 2">
+            <h3>Jasper Tasan</h3>
+            <p><strong>Role:</strong> Game Developer</p>
+            <p><strong>Specialty:</strong> Mechanics & Game Design</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 3">
+            <h3>Robmel Hitosis</h3>
+            <p><strong>Role:</strong>3D Artist</p>
+            <p><strong>Specialty:</strong>3D Assets & Cinematics</p>
+            <p><strong>Email:</strong></p>
+        </div>
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 2">
+            <h3>Ron Alipaspas</h3>
+            <p><strong>Role:</strong>Technical Writer & QA Tester</p>
+            <p><strong>Specialty:</strong> Documents & Testing</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 3">
+            <h3>Jonvic Bandoquillo</h3>
+            <p><strong>Role:</strong>Technical Writer & QA Tester</p>
+            <p><strong>Specialty:</strong> Documents & Testing</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+    </div>
+</section>
+<!-- Mentors -->
+<section id="team">
+    <h2 class="section-title">Project Consultants</h2>
+    <div class="requirements-container">
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 1">
+            <h3>Joey Vergom</h3>
+            <p><strong>Role:</strong> Technical Adviser</p>
+            <p><strong>Specialty:</strong> Project Flow</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 2">
+            <h3>Manuel III Bautista</h3>
+            <p><strong>Role:</strong> Research Adviser</p>
+            <p><strong>Specialty:</strong> System & Documents Revision</p>
+            <p><strong>Email:</strong></p>
+        </div>
+
+        <div class="requirement-card team-card">
+            <img src="businessman-128.png" alt="Team Member 3">
+            <h3>Sir Salunga</h3>
+            <p><strong>Role:</strong>Project Client</p>
+            <p><strong>Specialty:</strong>Game Requirements</p>
+            <p><strong>Email:</strong></p>
+        </div>
+        
+
+    </div>
+</section>
+<!-- VISION -->
+<section id="vision">
+    <div class="split">
+        <div class="split-text">
+            <h2 class="section-title">Team Vision</h2>
+            <p>
+                We are a team of student developers from the National College of Science and Technology (NCST) passionate about creating interactive digital experiences.
+             Together, we designed and developed a game that showcases our skills in programming, design, and teamwork.
+             This project reflects our creativity, dedication, and commitment to innovation in game development.
+            </p>
+            <br>
+            <br>
+            <a href="#team" style="padding: 25%;">
+                <button class="signin-btn">Personal Details</button>
+            </a>
+        </div>
+        <div class="split-imDivider">
+            <div><button class="nav-btn prev-btn" id="backButton">&#10094;</button></div>
+            <div class="split-image" id="splitImage"></div>
+            <div><button class="nav-btn next-btn" id="nextButton">&#10095;</button></div>
+        </div>
+        
+    </div>
+</section>
+
+<footer>
+    © 2026 DataScape | Escape the Algorithm
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const images = [
+        "gamesample1.png",
+        "gamesample2.png",
+        "gamesample3.png",
+        "gamesample4.png",
+        "gamesample5.png"
+    ];
+
+    let current = 0;
+    let showingBg1 = true;
+    
+    const bg1 = document.querySelector(".bg1");
+    const bg2 = document.querySelector(".bg2");
+    
+    bg1.style.backgroundImage = `url('${images[0]}')`;
+    
+    setInterval(() => {
+        current = (current + 1) % images.length;
+
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${images[current]}')`;
+            bg2.style.opacity = 1;
+            bg1.style.opacity = 0;
+        } else {
+            bg1.style.backgroundImage = `url('${images[current]}')`;
+            bg1.style.opacity = 1;
+            bg2.style.opacity = 0;
+        }
+
+        showingBg1 = !showingBg1;
+
+    }, 5000);
+});
+ const images = [
+        "gamesample1.png",
+        "gamesample2.png",
+        "gamesample3.png",
+        "gamesample4.png",
+        "gamesample5.png"
+    ];
+const divImage = document.getElementById("splitImage");
+    const nextButton = document.getElementById("nextButton")
+    const backButton = document.getElementById("backButton");
+    let cIndex=0;
+nextButton.onclick = function(){
+        console.log("next");
+        cIndex = (cIndex+1)%images.length;
+        //cIndex++;
+        divImage.style.backgroundImage = `url('${images[cIndex]}')`;
+    }
+    backButton.onclick = function(){
+        console.log("back");
+        cIndex = (cIndex-1)%images.length;
+        //cIndex--;
+        divImage.style.backgroundImage = `url('${images[cIndex]}')`;
+    }
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword,sendEmailVerification  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
- import { getFirestore, collection,getDocs,setDoc,doc} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+ import { getFirestore, collection,setDoc,doc,addDoc} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
   //import 'dotenv/config';
   // Your web app's Firebase configuration
@@ -17,18 +17,9 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
     console.log("Firebase initialized", auth);
-const db = getFirestore(app);
+  const db = getFirestore(app);
+console.log("db initialized", db);
 
-
-var uname = localStorage.getItem("username");
-var pword = localStorage.getItem("password");
-var em = localStorage.getItem("email");
-var code=localStorage.getItem("code");
-
-console.log(`Username: ${uname}`);
-console.log(`E-mail: ${em}`);
-console.log(`Password ${pword}`);
-console.log(`code: ${code}`);
 
 
   var email = document.getElementById("email")
@@ -37,7 +28,7 @@ console.log(`code: ${code}`);
   var regButton = document.getElementById("tryReg");
 
 /*
-
+const db = getFirestore(app);
 const collectionRef = collection(db,"DataScapePlayerBase");
     const firebaseQuery = await getDocs(collectionRef);
 
@@ -52,29 +43,35 @@ const collectionRef = collection(db,"DataScapePlayerBase");
       achievements:[]
     }
    
-  regButton.onclick = async()=>{
-    try{
-      const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    const user = userCredential.user;
-    await sendEmailVerification(user);
-    const docRef = await setDoc(doc(db, "DataScapePlayerBase",email.value), {
-           username: username.value,
-          highesLevel: 0,
-          coins: 0,
-          highscores:[],
-          skins:[],
-          bestTimes:[],
-          achievements:[],
-          status:"active"
-        });
-    alert("Email Verification sent. Check your inbox");
-    window.location.href = "code.html";
-    }catch(error){
-      console.error("error sign up: ", error.message)
-      alert("error sign up: ", error.message)
+  
+    regButton.onclick = async()=>{
+      const docRef = await setDoc(doc(db, "DataScapePlayerBase",email.value), {
+       username: username.value,
+      highesLevel: 0,
+      coins: 0,
+      highscores:[],
+      skins:[],
+      bestTimes:[],
+      achievements:[]
+    });
     }
+async function createDocument() {
+  try {
+    const docRef = await setDoc(doc(db, "DataScapePlayerBase",email), {
+       username: username,
+      highesLevel: 0,
+      coins: 0,
+      highscores:[],
+      skins:[],
+      bestTimes:[],
+      achievements:[]
+    });
 
+    console.log("Document written with ID:", docRef.id);
+  } catch (error) {
+    console.error("Error adding document:", error);
   }
+}
   /*
   function(){
     console.log(`Email : ${email.value}`)

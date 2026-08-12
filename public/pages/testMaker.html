@@ -75,19 +75,27 @@
 
         <div class="color-overlay d-flex justify-content-center align-items-center">
             <div class="login-field">
-         <h1 class="top-welcome">Confirm Registration</h1>
+         <h1 class="top-welcome">Register</h1>
             <br>
             <br>
             <div>
-                <p>Enter Verification Code Below:</p>
+                <p>Username</p>
                 <input type="text" id="username">
             </div>
             <br>
-            
+            <div>
+                <p>Password</p>
+                <input type="password" id="password">
+            </div>
+            <br>
+            <div>
+                <p id="req"></p>
+                <input type="text" id="email">
+            </div>
             <br>
             <br>
 
-            <button class="btn btn-success btn-lg login-btn" id="tryReg">Sign Up</button>
+            <button class="btn btn-success btn-lg login-btn" id="tryReg">Test</button>
             </div>
             <p class="signup">
                 Already have an account? Why are you here then? Click <a href="login.html">here!</a>
@@ -111,12 +119,12 @@
 <script>
 var reqText = document.getElementById("req");
     reqText.textContent="Email (required)";
-    const nodemailer = require('nodemailer');
 </script>
-<script src="app.js" type="module">
-    const nodemailer = require('nodemailer');
-    var code=localStorage.getItem("code");
-    console.log(code);
-</script>
+<!-- Comment text
+ <script src="app.js" type="module" defer></script>
+ <script src="sign-up.js"></script>
+-->
+
+<script src="Tester.js" type="module" defer></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 const navbar = document.getElementById("navbar")
 const gallery = document.querySelector(".gallery")
+const miniGallery = document.querySelector(".miniGallery")
 
 window.addEventListener('scroll',()=>{
     window.scrollY > 10 
@@ -7,6 +8,10 @@ window.addEventListener('scroll',()=>{
     : navBig(navbar)
     
 
+})
+miniGallery.addEventListener("wheel",(e)=>{
+    e.preventDefault();
+    miniGallery.scrollLeft += e.deltaY;
 })
 gallery.addEventListener("wheel",(e)=>{
     e.preventDefault();
